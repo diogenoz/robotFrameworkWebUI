@@ -1,0 +1,49 @@
+{% extends "../test_case_base.html" %}
+
+{%block test_case_base%}
+<div id="navbar">
+    <ul class="nav nav-tabs">
+  <li class="nav-item">
+      <a class="nav-link " aria-current="page" href="{% url 'test_case_index' test_case_id=test_case_id %}">Test case</a>
+        </li>
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'argument_set_index'  test_case_id=test_case_id %}">Argument Sets</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link active" href="{% url 'test_run_index' test_case_id=test_case_id %}">Test runs</a>
+  </li>
+  </ul>
+</div>
+
+<p>
+  <a href="{% url 'test_run_add' test_case_id=test_case_id %}" class="btn btn-primary btn-sm" tabindex="-1" role="button">Add</a>
+</p>
+
+
+<table class="table">
+  <thead class="table-light">
+  <th>id</th>
+  <th>start time</th>
+  <th>stop time</th>
+  <th>status</th>
+  <th>test case</th>
+  <th>argument set</th>
+  <th>report link</th>
+  <th>log</th>
+  </thead>
+  <tbody>
+{%for test_run in test_runs %}
+    <tr>
+        <td>{{test_run.id}}</td>
+        <td>{{test_run.start_datetime}}</td>
+        <td>{{test_run.stop_datetime}}</td>
+        <td>{{test_run.status}}</td>
+        <td>{{test_run.test_case}}</td>
+        <td>{{test_run.argument_set}}</td>
+        <td><a href="{{MEDIA_URL}}{{test_run.report_file_path}}" target="_blank">report</a> </td>
+        <td><a href="{{MEDIA_URL}}{{test_run.test_log_file_path}}" target="_blank">log</a> </td>
+    </tr>
+{%endfor%}
+</tbody>
+</table>
+{%endblock%}

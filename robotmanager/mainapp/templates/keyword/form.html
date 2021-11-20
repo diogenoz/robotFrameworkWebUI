@@ -1,0 +1,10 @@
+{% extends "../base.html" %}
+{%block body %}
+
+<form action="{% if keyword_id %} {%url 'keyword_edit' keyword_id %} {% else %} {% url 'keyword_add' %} {% endif %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+<button type="submit">Save</button>
+</form>
+
+{%endblock%}

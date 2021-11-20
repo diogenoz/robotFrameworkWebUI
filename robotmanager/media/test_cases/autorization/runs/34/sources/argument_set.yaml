@@ -1,0 +1,5 @@
+BROWSER: firefox
+DELAY: 0
+ENV_SERVER: https://tm.uat01.bss.loc/
+ENV_USER: corp\service_admb2b2_uk
+ENV_PASSWORD: LZJHk*2bnF

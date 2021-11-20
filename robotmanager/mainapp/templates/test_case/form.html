@@ -1,0 +1,10 @@
+{% extends "./test_case_base.html" %}
+{%block test_case_base %}
+
+<form action="{% if test_case_id %} {%url 'test_case_edit' test_case_id%} {% else %} {% url 'test_case_add' %} {% endif %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+<button type="submit">Save</button>
+</form>
+
+{%endblock%}

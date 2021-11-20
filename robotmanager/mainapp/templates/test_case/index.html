@@ -1,0 +1,73 @@
+{% extends "./test_case_base.html" %}
+{%block test_case_id%}
+{{test_case.id}}
+{%endblock %}
+{%block test_case_base %}
+
+<div id="navbar">
+    <ul class="nav nav-tabs">
+  <li class="nav-item">
+         <a class="nav-link active" aria-current="page" href="{% url 'test_case_index' test_case_id=test_case.id %}">Test
+                case</a>  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'argument_set_index'  test_case_id=test_case.id %}">Argument Sets</a>
+        </li>
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'test_run_index' test_case_id=test_case.id %}">Test runs</a>
+        </li>
+  </ul>
+</div>
+
+<p>
+  <a href="{% url 'test_case_edit' test_case_id=test_case.id %}" class="btn btn-primary btn-sm" tabindex="-1" role="button">Edit</a>
+  <a href="#" class="btn btn-primary btn-sm" tabindex="-1" role="button">Delete</a>
+</p>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            id
+        </div>
+        <div class="col-8">
+            {{test_case.id}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            Name
+        </div>
+        <div class="col-8">
+            {{test_case.name}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            Description
+        </div>
+        <div class="col-8">
+            {{test_case.description}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            Category
+        </div>
+        <div class="col-8">
+            {{test_case.test_case_category}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            Content
+        </div>
+        <div class="col-8">
+            <textarea cols="60" rows="20" readonly="readonly">
+               {{content}}
+           </textarea>
+
+        </div>
+    </div>
+</div>
+
+{%endblock%}

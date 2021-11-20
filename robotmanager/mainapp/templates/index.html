@@ -1,0 +1,33 @@
+{% extends "./base.html" %}
+
+{% block body %}
+<p>
+  <a href="{% url 'test_case_category_add'%}" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Add Category</a>
+  <a href="{% url 'test_case_add'%}" class="btn btn-primary btn-sm" tabindex="-1" role="button">Add Test Case</a>
+</p>
+
+{% load mptt_tags %}
+<div class="treeview">
+{% for test_case_category, structure in test_case_categories|tree_info %}
+    {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
+    <div>
+    <p>
+        <a href="#" class="sc" onclick="return UnHide(this)">&#9660;</a>
+        <a href="{% url 'test_case_category_edit' test_case_category_id=test_case_category.id %}">{{ test_case_category }}</a>
+    </p>
+    </div>
+    <ul>
+        {% for test_case in test_cases %}
+
+        {% if test_case.test_case_category == test_case_category %}
+            <li><div><p>
+                <a href="{% url 'test_case_index' test_case_id=test_case.id %}">{{test_case}}</a>
+            </p></div><li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% for level in structure.closed_levels %}</li></ul>{% endfor %}
+{% endfor %}
+</div>
+
+{% endblock %}

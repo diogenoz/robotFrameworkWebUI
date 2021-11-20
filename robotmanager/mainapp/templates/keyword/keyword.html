@@ -1,0 +1,48 @@
+{% extends "../base.html" %}
+
+{%block body%}
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            id
+        </div>
+        <div class="col-8">
+            {{keyword.id}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            Name
+        </div>
+        <div class="col-8">
+            {{keyword.name}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            Description
+        </div>
+        <div class="col-8">
+            {{keyword.description}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            Keyword group
+        </div>
+        <div class="col-8">
+            {{keyword.keyword_group}}
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-2">
+            Content
+        </div>
+        <div class="col-8">
+            <textarea cols="60" rows="20" readonly="readonly">
+               {{keyword.get_content_from_file}}
+           </textarea>
+        </div>
+    </div>
+</div>
+{%endblock%}

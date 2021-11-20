@@ -1,0 +1,10 @@
+{% extends "../base.html" %}
+{%block body %}
+
+<form action="{% if environment_id %} {%url 'environment_edit' environment_id %} {% else %} {% url 'environment_add' %} {% endif %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+<button type="submit">Save</button>
+</form>
+
+{%endblock%}

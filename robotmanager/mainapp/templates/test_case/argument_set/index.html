@@ -1,0 +1,45 @@
+{% extends "../test_case_base.html" %}
+
+{%block test_case_base%}
+<div id="navbar">
+    <ul class="nav nav-tabs">
+  <li class="nav-item">
+      <a class="nav-link " aria-current="page" href="{% url 'test_case_index' test_case_id=test_case_id %}">Test case</a>
+        </li>
+  <li class="nav-item">
+      <a class="nav-link active" href="{% url 'argument_set_index'  test_case_id=test_case_id %}">Argument Sets</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'test_run_index' test_case_id=test_case_id %}">Test runs</a>
+  </li>
+  </ul>
+</div>
+
+<p>
+  <a href="{% url 'argument_set_add' test_case_id=test_case_id %}" class="btn btn-primary btn-sm" tabindex="-1" role="button">Add</a>
+</p>
+
+
+<table class="table">
+  <thead class="table-light">
+  <th>id</th>
+  <th>name</th>
+  <th>content</th>
+  <th></th>
+  </thead>
+  <tbody>
+{%for argument_set in argument_sets %}
+    <tr>
+        <td>{{argument_set.id}}</td>
+        <td>{{argument_set.name}}</td>
+        <td><textarea cols="20" rows="5" readonly="readonly">{{argument_set.get_content_from_file}}</textarea></td>
+        <td><p>
+  <a href="{% url 'argument_set_edit' test_case_id=test_case_id arg_set_id=argument_set.id %}" class="btn btn-primary btn-sm" tabindex="-1" role="button">Edit</a>
+  <a href="#"  class="btn btn-primary btn-sm" tabindex="-1" role="button">Delete</a>
+</p>
+</td>
+    </tr>
+{%endfor%}
+</tbody>
+</table>
+{%endblock%}
